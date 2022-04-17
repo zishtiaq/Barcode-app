@@ -1,0 +1,14 @@
+.Polaris-Card__Section {
+  margin: 10px auto;
+}
+
+.list__item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  position: relative;
+  &__icon {
+    position: absolute;
+    right: 0;
+  }
+}
