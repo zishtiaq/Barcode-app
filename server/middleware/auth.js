@@ -23,7 +23,7 @@ export default function applyAuthMiddleware(app) {
     res.cookie(app.get("top-level-oauth-cookie"), "1", {
       signed: true,
       httpOnly: true,
-      sameSite: "strict",
+      // sameSite: "strict",
     });
 
     res.set("Content-Type", "text/html");
