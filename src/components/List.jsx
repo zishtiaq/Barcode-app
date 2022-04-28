@@ -34,7 +34,7 @@ export function List({ variant }) {
       value: variant.displayName,
     },
     { id: "barcode", name: "Barcode", checked: true, value: variant.barcode },
-    { id: "price", name: "Price", checked: true, value: variant.price },
+    { id: "price", name: "Price", checked: true, value: "$" + variant.price },
   ]);
   const postField = (e) => {
     setLoading(true);
@@ -102,9 +102,18 @@ export function List({ variant }) {
               return (
                 <>
                   {single.checked && single.name == "Barcode" && (
-                    <span className="barcode">**{single.value}**</span>
+                    <Barcode
+                      value={single.value}
+                      format="CODE39"
+                      height={40}
+                      font="Arial"
+                    />
                   )}
-                  {single.checked && <h4>{single.value}</h4>}
+                  {single.checked && single.name !== "Barcode" && (
+                    <h4 className={single.name.replaceAll(" ", "-")}>
+                      {single.value}
+                    </h4>
+                  )}
                 </>
               );
             })}

@@ -42,7 +42,9 @@
     "react-sortablejs": "^6.1.1",
     "serve-static": "^1.14.1",
     "sortablejs": "^1.15.0",
-    "vite": "^2.9.1"
+    "svg-to-pdfkit": "^0.1.8",
+    "vite": "^2.9.1",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "husky": "^7.0.4",

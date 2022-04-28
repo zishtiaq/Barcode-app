@@ -1,10 +1,36 @@
-// @charset "UTF-8";
-// @import url("https://fonts.googleapis.com/css2?family=Libre+Barcode+39&family=Libre+Barcode+EAN13+Text&display=swap");
+@charset "UTF-8";
 
-// .barcode {
-//   font-family: "Libre Barcode 39", cursive;
-//   font-family: "Libre Barcode EAN13 Text", cursive;
-// }
+@font-face {
+  font-family: "barcode";
+  src: local("barcode");
+  src: url(../assets/font/barcode.ttf) format("truetype");
+}
+
+.barcode {
+  font-family: "barcode", cursive;
+}
+
+.barcode__preview {
+  width: 350px;
+  background: white;
+  text-align: center;
+  margin: 0 auto;
+  border: 1px solid #00000050;
+  padding: 10px 5px;
+
+  .Price {
+    font-family: Arial;
+    font-size: 30px;
+    line-height: 1;
+    color: black;
+    margin-bottom: 5px;
+  }
+
+  h4.Title-with-options {
+    color: black;
+    line-height: 1;
+  }
+}
 
 .Polaris-Card__Section {
   margin: 10px auto;
@@ -15,6 +41,7 @@
   align-items: center;
   margin: 10px 0;
   position: relative;
+
   &__icon {
     position: absolute;
     right: 0;

@@ -63,7 +63,6 @@ export async function createServer(
   });
 
   app.post("/pdf", jsonParser, async (req, res) => {
-    console.log(req.body);
     if (!req.body) {
       res.json({ error: "Invalid request" });
     }

@@ -30,17 +30,15 @@ export default class PdfKitService {
         margins: { top: 0, left: 0, bottom: 0, right: 0 },
         margin: 0,
       });
-      let x = 10,
+      let x = 15,
         y = 0;
       doc.rotate(-90, { origin: [85, 95] });
-      console.log(fields);
       fields.map(async (field) => {
         switch (field.id) {
           case "barcode":
-            x = x + 15;
             doc
               .font(__dirname + "/font/barcode.ttf")
-              .fontSize(40)
+              .fontSize(35)
               .text(
                 "*" + field.value + "*",
                 {
@@ -50,10 +48,10 @@ export default class PdfKitService {
                 x,
                 y
               );
-            x = x + 25;
+            x = x + 23;
             doc
               .font(__dirname + "/font/arial.ttf")
-              .fontSize(6)
+              .fontSize(12)
               .text(
                 field.value,
                 {
@@ -63,9 +61,9 @@ export default class PdfKitService {
                 x,
                 y
               );
+            x = x + 15;
             break;
           case "displayName":
-            x = x + 15;
             doc
               .font(__dirname + "/font/arial.ttf")
               .fontSize(7)
@@ -78,15 +76,15 @@ export default class PdfKitService {
                 x,
                 y
               );
-
+            x = x + 15;
             break;
           case "price":
-            x = x + 2;
+            console.log(field.value);
             doc
               .font(__dirname + "/font/arial.ttf")
               .fontSize(15)
               .text(
-                "$" + field.value,
+                field.value,
                 {
                   align: "center",
                   width: doc.page.height,
@@ -94,7 +92,7 @@ export default class PdfKitService {
                 x,
                 y
               );
-
+            x = x + 20;
             break;
         }
       });
