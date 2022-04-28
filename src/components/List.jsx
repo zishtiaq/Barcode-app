@@ -97,12 +97,18 @@ export function List({ variant }) {
       <Layout.Section oneHalf>
         <Card sectioned>
           <Heading size="medium">Preview</Heading>
-          {list.map((single, index) => {
-            single.checked && single.name == "Barcode" && (
-              <Barcode value={variant.barcode} />
-            );
-            return single.checked && <h4>{single.value}</h4>;
-          })}
+          <div class="barcode__preview">
+            {list.map((single, index) => {
+              return (
+                <>
+                  {single.checked && single.name == "Barcode" && (
+                    <span className="barcode">**{single.value}**</span>
+                  )}
+                  {single.checked && <h4>{single.value}</h4>}
+                </>
+              );
+            })}
+          </div>
         </Card>
       </Layout.Section>
       <Layout.Section>

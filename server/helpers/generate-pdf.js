@@ -40,7 +40,7 @@ export default class PdfKitService {
             x = x + 15;
             doc
               .font(__dirname + "/font/barcode.ttf")
-              .fontSize(30)
+              .fontSize(40)
               .text(
                 "*" + field.value + "*",
                 {
@@ -65,7 +65,7 @@ export default class PdfKitService {
               );
             break;
           case "displayName":
-            x = x + 20;
+            x = x + 15;
             doc
               .font(__dirname + "/font/arial.ttf")
               .fontSize(7)
@@ -81,10 +81,10 @@ export default class PdfKitService {
 
             break;
           case "price":
-            x = x + 5;
+            x = x + 2;
             doc
               .font(__dirname + "/font/arial.ttf")
-              .fontSize(17)
+              .fontSize(15)
               .text(
                 "$" + field.value,
                 {
