@@ -5,6 +5,7 @@ import {
   Layout,
   Banner,
   Form,
+  ButtonGroup,
   FormLayout,
   TextField,
   Button,
@@ -33,7 +34,7 @@ export function HomePage() {
           node{
             title,
             id,
-            variants(first:50){
+            variants(first:100){
               edges{
                 node{
                   price,
@@ -49,7 +50,7 @@ export function HomePage() {
 `;
     _event.preventDefault();
     setLoading(true);
-    console.log(PRODUCTS_QUERY);
+    setVariant(null);
     let { data } = await client.query({
       query: PRODUCTS_QUERY,
     });
@@ -60,23 +61,18 @@ export function HomePage() {
         message: "Not Found",
         status: "critical",
       });
-
-      return;
     }
-    console.log(data.products.edges[0]);
-    console.log(data.products.edges[0].node.variants.edges);
-    let v = data.products.edges[0].node.variants.edges.map((vari) => {
+    let v = data.products.edges[0].node.variants.edges.filter((vari) => {
       if (vari.node.barcode == barcode) {
         return vari;
       }
     })[0];
-    if (!v.node) console.log(v);
     if (v && v.node) {
-      setVariant(v.node);
       setError({
         message: false,
         status: "critical",
       });
+      setVariant(v.node);
     } else {
       setError({
         message: "Not Found",
@@ -87,6 +83,13 @@ export function HomePage() {
     setLoading(false);
   };
   const handleBarcodeChange = (value) => setBarcode(value);
+
+  const handleReset = (e) => {
+    e && e.preventDefault();
+    setBarcode("");
+    setVariant(null);
+    setLoading(false);
+  };
   return (
     <Page fullWidth>
       <Layout>
@@ -106,9 +109,12 @@ export function HomePage() {
                     <span>We’ll use this barcode to search variant</span>
                   }
                 />
-                <Button submit loading={loading}>
-                  Submit
-                </Button>
+                <ButtonGroup>
+                  <Button primary submit loading={loading}>
+                    Submit
+                  </Button>
+                  <Button onClick={handleReset}>Reset</Button>
+                </ButtonGroup>
               </FormLayout>
             </Form>
           </Card>

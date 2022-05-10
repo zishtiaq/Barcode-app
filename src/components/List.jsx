@@ -22,9 +22,6 @@ import "./list.scss";
 import axios from "axios";
 
 export function List({ variant }) {
-  console.log(variant);
-  const fetchFunction = authenticatedFetch(app);
-
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState([
     {
@@ -45,7 +42,6 @@ export function List({ variant }) {
     })
       .then((response) => {
         setLoading(false);
-        console.log(response.data);
         const file = new Blob([response.data], { type: "application/pdf" });
         //Build a URL from the file
         const fileURL = URL.createObjectURL(file);
@@ -100,7 +96,7 @@ export function List({ variant }) {
           <div class="barcode__preview">
             {list.map((single, index) => {
               return (
-                <>
+                <span key={index}>
                   {single.checked && single.name == "Barcode" && (
                     <Barcode
                       value={single.value}
@@ -114,7 +110,7 @@ export function List({ variant }) {
                       {single.value}
                     </h4>
                   )}
-                </>
+                </span>
               );
             })}
           </div>
